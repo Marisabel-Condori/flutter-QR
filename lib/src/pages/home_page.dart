@@ -15,8 +15,20 @@ class _HomePageState extends State<HomePage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('QRREADER'),
+        actions: <Widget>[
+          Icon(Icons.delete_forever)
+        ],
+      ),
       body: _callPage(currentI),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: _crearBottonNavigationBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: Icon(Icons.zoom_out_map),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
     );
   }
 
