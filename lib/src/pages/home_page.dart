@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+
+import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:qr_react_app/src/pages/direcciones_page.dart';
 import 'package:qr_react_app/src/pages/mapas_page.dart';
  
@@ -16,16 +18,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('QRREADER'),
+        title: Text('QRREADER', style: TextStyle(color: Colors.white) ),
         actions: <Widget>[
-          Icon(Icons.delete_forever)
+          IconButton(icon: Icon( Icons.delete_forever, color: Colors.white,), onPressed: (){})
         ],
       ),
       body: _callPage(currentI),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: _crearBottonNavigationBar(),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: _scanQr,
         child: Icon(Icons.zoom_out_map),
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -54,4 +56,18 @@ class _HomePageState extends State<HomePage> {
       ]
     );
   }
+  _scanQr() async{
+    String futureString = '';
+
+    try {
+      futureString = await scanner.scan();
+    } catch (e) {
+      futureString = e.toString();
+    }
+    print('futureString: $futureString');
+    if(futureString != null){
+      print('tenemos el resultado');
+    }
+  }
+  
 }
