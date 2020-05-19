@@ -57,6 +57,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
   _scanQr() async{
+    /* https://mari
+       geo:40.79496711003821,-73.60494032343753
+    */
+
     String futureString = '';
 
     try {
@@ -66,7 +70,7 @@ class _HomePageState extends State<HomePage> {
     }
     print('futureString: $futureString');
     if(futureString != null){
-      print('tenemos el resultado');
+      print('TENEMOS EL RESULTADO.................................');
     }
   }
   
