@@ -68,6 +68,12 @@ class DBProvider{
     List<ScanModel> list = res.isNotEmpty ? res.map((c) => ScanModel.fromJson(c)).toList() : [];
     return list;
   }
+  /** ACTUALIZAR REGISTROS**/
+  Future<int> updateScan( ScanModel nuevoScan)async{
+    final db = await database;
+    final res = await db.update('Scans', nuevoScan.toJson(), where: ' id = ?', whereArgs:[nuevoScan.id] );
+    return res;
+  }
   
   
 
