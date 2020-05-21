@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_react_app/src/models/scanModel.dart';
 import 'package:qr_react_app/src/bloc/scans_bloc.dart';
-import 'package:qr_react_app/src/provider/db_provider.dart';
 
 class MapasPage extends StatelessWidget {
   final scansBloc = new ScansBloc();
@@ -22,7 +21,7 @@ class MapasPage extends StatelessWidget {
           itemBuilder: (context, i) => Dismissible(
             key: UniqueKey(),
             background: Container(color: Colors.red),
-            onDismissed: (direction) => DBProvider.dbProvider.deleteScans(scan[i].id),
+            onDismissed: (direction) => scansBloc.borrarScan(scan[i].id),
             child: ListTile(
               leading: Icon(Icons.cloud_queue, color: Theme.of(context).primaryColor,),
               title: Text(scan[i].valor),
