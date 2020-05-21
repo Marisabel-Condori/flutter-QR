@@ -17,10 +17,15 @@ class MapasPage extends StatelessWidget {
         }
         return ListView.builder(
           itemCount: scan.length,
-          itemBuilder: (context, i) => ListTile(
-            leading: Icon(Icons.cloud_queue, color: Theme.of(context).primaryColor,),
-            title: Text(scan[i].valor),
-            trailing: Icon(Icons.arrow_forward_ios),
+          itemBuilder: (context, i) => Dismissible(
+            key: UniqueKey(),
+            background: Container(color: Colors.red),
+            onDismissed: (direction) => DBProvider.dbProvider.deleteScans(scan[i].id),
+            child: ListTile(
+              leading: Icon(Icons.cloud_queue, color: Theme.of(context).primaryColor,),
+              title: Text(scan[i].valor),
+              trailing: Icon(Icons.arrow_forward_ios, color: Colors.grey,)
+            ),
           ),
         );
       },
