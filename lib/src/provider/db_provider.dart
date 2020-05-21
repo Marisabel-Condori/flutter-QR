@@ -24,12 +24,12 @@ class DBProvider{
       path,
       version: 1,
       onOpen: (db){},
-      onCreate: (Database db, version) async{
+      onCreate: (Database db, int version) async{
         await db.execute(
-          ' CREATE TABLE Scans ('
+          'CREATE TABLE Scans ('
           'id INTEGER PRIMARY KEY,'
           'tipo TEXT,'
-          'valor TEXT,'
+          'valor TEXT'
           ')'
         );
       }

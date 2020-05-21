@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:qr_react_app/src/models/scanModel.dart';
+import 'package:qr_react_app/src/provider/db_provider.dart';
 
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:qr_react_app/src/pages/direcciones_page.dart';
@@ -61,17 +63,21 @@ class _HomePageState extends State<HomePage> {
        geo:40.79496711003821,-73.60494032343753
     */
 
-    String futureString = '';
+    //String futureString = '';
 
-    try {
+    String futureString = 'https://mari';
+
+  /*  try {
       futureString = await scanner.scan();
     } catch (e) {
       futureString = e.toString();
-    }
-    print('futureString: $futureString');
+    }*/
+  //  print('futureString: $futureString');
     if(futureString != null){
-      print('TENEMOS EL RESULTADO.................................');
+      final scan = ScanModel(valor: futureString);
+      DBProvider.dbProvider.nuevoScan(scan);
     }
   }
+  
   
 }
