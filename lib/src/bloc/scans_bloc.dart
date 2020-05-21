@@ -13,6 +13,7 @@ class ScansBloc{
   }
 
   final _scansController = StreamController<List<ScanModel>>.broadcast();
+  Stream<List<ScanModel>> get scanStream => _scansController.stream;
 
   dispose(){
     _scansController?.close();
@@ -28,8 +29,8 @@ class ScansBloc{
     await DBProvider.dbProvider.deleteScans(id);
     obtenerScans();
   }
-  borrarScanTODOS(int id) async{
-    await DBProvider.dbProvider.deleteAll(id);
+  borrarScanTODOS() async{
+    await DBProvider.dbProvider.deleteAll();
     obtenerScans();
   }
 

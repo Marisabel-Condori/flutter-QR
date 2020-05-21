@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:qr_react_app/src/models/scanModel.dart';
+import 'package:qr_react_app/src/bloc/scans_bloc.dart';
 import 'package:qr_react_app/src/provider/db_provider.dart';
 
 class MapasPage extends StatelessWidget {
+  final scansBloc = new ScansBloc();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ScanModel>>(
-      future: DBProvider.dbProvider.getTodosScans(),
+    return StreamBuilder<List<ScanModel>>(
+      stream: scansBloc.scanStream,
       builder: (BuildContext context, AsyncSnapshot<List<ScanModel>> snapshot) {
         if (!snapshot.hasData) {  return Center(child: CircularProgressIndicator(),); }
 
