@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_react_app/src/models/scanModel.dart';
 import 'package:qr_react_app/src/bloc/scans_bloc.dart';
+import 'package:qr_react_app/src/utils/scan_utils.dart' as util;
 
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:qr_react_app/src/pages/direcciones_page.dart';
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('QRREADER', style: TextStyle(color: Colors.white) ),
         actions: <Widget>[
-          IconButton(icon: Icon( Icons.delete_forever, color: Colors.white,), onPressed: (){scansBloc.borrarScanTODOS();})
+          IconButton(icon: Icon( Icons.delete_forever, color: Colors.white,), onPressed: scansBloc.borrarScanTODOS)
         ],
       ),
       body: _callPage(currentI),
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
 
     //String futureString = '';
 
-    String futureString = 'https://mari';
+    String futureString = 'https://google.com';
 
   /*  try {
       futureString = await scanner.scan();
@@ -78,6 +79,9 @@ class _HomePageState extends State<HomePage> {
     if(futureString != null){
       final scan = ScanModel(valor: futureString);
       scansBloc.agregarScan(scan);
+
+    /*  final scan2 = ScanModel(valor: 'geo:40.79496711003821,-73.60494032343753');
+      scansBloc.agregarScan(scan2);*/
     }
   }
   
