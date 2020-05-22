@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: _crearBottonNavigationBar(),
       floatingActionButton: FloatingActionButton(
-        onPressed: _scanQr,
+        onPressed:() => _scanQr(context),
         child: Icon(Icons.zoom_out_map),
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
       ]
     );
   }
-  _scanQr() async{
+  _scanQr(BuildContext context) async{
     /* https://mari
        geo:40.79496711003821,-73.60494032343753
     */
@@ -80,8 +80,10 @@ class _HomePageState extends State<HomePage> {
       final scan = ScanModel(valor: futureString);
       scansBloc.agregarScan(scan);
 
-    /*  final scan2 = ScanModel(valor: 'geo:40.79496711003821,-73.60494032343753');
-      scansBloc.agregarScan(scan2);*/
+      final scan2 = ScanModel(valor: 'geo:40.79496711003821,-73.60494032343753');
+      scansBloc.agregarScan(scan2);
+
+    util.abrirScan(context ,scan);
     }
   }
   

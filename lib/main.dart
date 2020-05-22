@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_react_app/src/pages/home_page.dart';
+import 'package:qr_react_app/src/pages/mapa_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
       title: 'QR APP',
       initialRoute: '/',
       routes: {
-        '/': (BuildContext context) => HomePage()
+        '/': (BuildContext context) => HomePage(),
+        'mapa': (BuildContext context) => MapaPage()
       },
       theme: ThemeData(primaryColor: Colors.greenAccent),
     );
