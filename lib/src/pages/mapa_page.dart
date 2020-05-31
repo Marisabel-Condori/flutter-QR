@@ -1,8 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:qr_react_app/src/models/scanModel.dart';
-
-import 'package:latlong/latlong.dart';
 
 class MapaPage extends StatelessWidget {
 
@@ -30,6 +29,7 @@ class MapaPage extends StatelessWidget {
       ),
       layers: [
         _crearMapa(),
+        _crearMarcadores(scan),
       ],
     );
   }
@@ -41,6 +41,21 @@ class MapaPage extends StatelessWidget {
         'accessToken': 'pk.eyJ1IjoibWFyaWNvbmRvcmkiLCJhIjoiY2thaHFzazM2MG5kdTJybms4eGJ0d2U1aiJ9.g4pphqmRsfmq4Y5h2PER3w',
         'id': 'mapbox.satellite'
       }
+    );
+  }
+
+  _crearMarcadores(ScanModel scan){
+    return MarkerLayerOptions(
+      markers: <Marker>[
+        Marker(
+          point: scan.getLatLong(),
+          width: 120.0,
+          height: 120.0,
+          builder: (context) => Container(
+            child: Icon(Icons.location_on, size: 70.0, color: Theme.of(context).primaryColor,),
+          )
+        )
+      ]
     );
   }
 }
