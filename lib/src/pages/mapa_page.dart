@@ -3,8 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:qr_react_app/src/models/scanModel.dart';
 
-class MapaPage extends StatelessWidget {
+class MapaPage extends StatefulWidget {
+  @override
+  _MapaPageState createState() => _MapaPageState();
+}
+
+class _MapaPageState extends State<MapaPage> {
   final map = MapController();
+
+  String tipoMapa = 'satellite';
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +37,21 @@ class MapaPage extends StatelessWidget {
      return FloatingActionButton(
        child: Icon(Icons.repeat),
        backgroundColor: Theme.of(context).primaryColor,
-       onPressed: (){}
+       onPressed: (){
+         // no acepta los otros tipos, arreglar codigo, ver documentacion
+          // if( tipoMapa == 'satellite'){
+          //   tipoMapa = 'outdoors';
+          // }else if(tipoMapa == 'outdoors'){
+          //   tipoMapa = 'streets';
+          // }else if(tipoMapa == 'streets'){
+          //   tipoMapa = 'dark';
+          // }else if(tipoMapa == 'dark'){
+          //   tipoMapa = 'light';
+          // }else{
+          //   tipoMapa = 'satellite';
+          // }
+          // setState(() {   });
+       }
      );
    }
 
@@ -52,7 +73,7 @@ class MapaPage extends StatelessWidget {
       urlTemplate: 'https://api.mapbox.com/v4/{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}',
       additionalOptions: {
         'accessToken': 'pk.eyJ1IjoibWFyaWNvbmRvcmkiLCJhIjoiY2thaHFzazM2MG5kdTJybms4eGJ0d2U1aiJ9.g4pphqmRsfmq4Y5h2PER3w',
-        'id': 'mapbox.satellite'
+        'id': 'mapbox.$tipoMapa'
       }
     );
   }
